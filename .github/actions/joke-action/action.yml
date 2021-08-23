@@ -1,12 +1,19 @@
-name: "external API action"
+name: JS Actions
 
-description: "use an external API to retrieve and display a joke"
+on:
+  pull_request:
+    types: [labeled]
 
-outputs:
-  joke-output:
-    description: The resulting joke from the icanhazdadjokes API
+jobs:
+  action:
+    runs-on: ubuntu-latest
 
-runs:
-  using: "node12"
-  main: "main.js"
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: hello-action
+        uses: ./.github/actions/hello-world
+
+      - name: ha-ha
+        uses: ./.github/actions/joke-action
 
